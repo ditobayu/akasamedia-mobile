@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductDetailActionBar extends StatelessWidget {
   const ProductDetailActionBar({
@@ -17,7 +18,9 @@ class ProductDetailActionBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                context.pop();
+              },
               child: SvgPicture.asset(
                 'assets/icons/ic_back.svg',
                 width: 24,

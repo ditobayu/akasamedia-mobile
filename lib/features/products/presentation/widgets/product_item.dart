@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:toko_rame/core/theme/app_colors.dart';
 import 'package:toko_rame/core/theme/app_font.dart';
+import 'package:toko_rame/core/util/currency_formatter.dart';
 import 'package:toko_rame/features/products/domain/entities/product.dart';
 import 'package:toko_rame/ui/widgets/buttons.dart';
 
@@ -61,7 +62,7 @@ class ProductItem extends StatelessWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          "Rp${item.resellerPrice!.toInt()}",
+                          formatCurrency(item.resellerPrice!.toInt()),
                           style: AppTextStyles.smallNormalBold.copyWith(
                             color: Colors.green,
                           ),
@@ -93,76 +94,7 @@ class ProductItem extends StatelessWidget {
                 CustomFilledButton(
                   title: "Bagikan Produk",
                   onPressed: () {
-                    showModalBottomSheet(
-                      context: context,
-                      isScrollControlled: true,
-                      builder: (context) => Wrap(children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 21, vertical: 17),
-                          width: double.infinity,
-                          child: Column(
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  SvgPicture.asset(
-                                    'assets/icons/ic_close.svg',
-                                    width: 24,
-                                    height: 24,
-                                  ),
-                                  const SizedBox(
-                                    width: 14,
-                                  ),
-                                  Text(
-                                    "Bagikan Product",
-                                    style: AppTextStyles.smallNoneMedium,
-                                  )
-                                ],
-                              ),
-                              const SizedBox(height: 20),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                        padding: const EdgeInsets.all(16),
-                                        decoration: const BoxDecoration(
-                                            // give only bottom border
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: AppColors.primary200,
-                                                    width: 1))),
-                                        child: Text(
-                                          "Text dan Link",
-                                          style: AppTextStyles.smallNoneRegular,
-                                        )),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 20),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                        padding: const EdgeInsets.all(16),
-                                        decoration: const BoxDecoration(
-                                            // give only bottom border
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: AppColors.primary200,
-                                                    width: 1))),
-                                        child: Text(
-                                          "Gambar",
-                                          style: AppTextStyles.smallNoneRegular,
-                                        )),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ]),
-                    );
+                    _showShareDialog(context);
                   },
                   textStyle: AppTextStyles.xSmallNoneRegular,
                 )
@@ -181,6 +113,76 @@ class ProductItem extends StatelessWidget {
                   child: const Text("New")))
         ],
       ),
+    );
+  }
+
+  _showShareDialog(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => Wrap(children: [
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 17),
+          width: double.infinity,
+          child: Column(
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(
+                    'assets/icons/ic_close.svg',
+                    width: 24,
+                    height: 24,
+                  ),
+                  const SizedBox(
+                    width: 14,
+                  ),
+                  Text(
+                    "Bagikan Product",
+                    style: AppTextStyles.smallNoneMedium,
+                  )
+                ],
+              ),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: const BoxDecoration(
+                            // give only bottom border
+                            border: Border(
+                                bottom: BorderSide(
+                                    color: AppColors.primary200, width: 1))),
+                        child: Text(
+                          "Text dan Link",
+                          style: AppTextStyles.smallNoneRegular,
+                        )),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: const BoxDecoration(
+                            // give only bottom border
+                            border: Border(
+                                bottom: BorderSide(
+                                    color: AppColors.primary200, width: 1))),
+                        child: Text(
+                          "Gambar",
+                          style: AppTextStyles.smallNoneRegular,
+                        )),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ]),
     );
   }
 }

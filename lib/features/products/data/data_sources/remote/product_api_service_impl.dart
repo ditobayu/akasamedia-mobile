@@ -5,7 +5,7 @@ class ProductApiServiceImpl implements ProductApiService {
   @override
   Future<List<ProductModel>> getProducts() {
     //give a timer to simulate the network delay
-    return Future.delayed(const Duration(seconds: 0), () {
+    return Future.delayed(const Duration(seconds: 4), () {
       return [
         const ProductModel(
           id: '1',
@@ -24,7 +24,7 @@ class ProductApiServiceImpl implements ProductApiService {
           commision: 20,
           stock: 10,
           sizes: ['Paket 1', 'Paket 2'],
-          colors: ['Red', 'Blue', 'Green'],
+          colors: ['FF0000', '0000FF', '008000'],
         ),
         const ProductModel(
           id: '2',
@@ -43,7 +43,7 @@ class ProductApiServiceImpl implements ProductApiService {
           commision: 20,
           stock: 20,
           sizes: ['Paket 1', 'Paket 2'],
-          colors: ['Red', 'Blue', 'Green'],
+          colors: ['FF0000', '0000FF', '008000'],
         ),
         const ProductModel(
           id: '3',
@@ -62,7 +62,64 @@ class ProductApiServiceImpl implements ProductApiService {
           commision: 20,
           stock: 30,
           sizes: ['Paket 1', 'Paket 2'],
-          colors: ['Red', 'Blue', 'Green'],
+          colors: ['FF0000', '0000FF', '008000'],
+        ),
+        const ProductModel(
+          id: '4',
+          name: 'Product 4',
+          seller: 'Seller 4',
+          description: 'Description 4',
+          customerPrice: 400000,
+          resellerPrice: 360000,
+          image: [
+            'https://asset.kompas.com/crops/mYjxtrLJrYGSUXELuF5Qo7N7Xuw=/0x0:1000x667/1200x800/data/photo/2022/05/28/62922b221dd75.jpg',
+            'https://asset.kompas.com/crops/mYjxtrLJrYGSUXELuF5Qo7N7Xuw=/0x0:1000x667/1200x800/data/photo/2022/05/28/62922b221dd75.jpg',
+            'https://asset.kompas.com/crops/mYjxtrLJrYGSUXELuF5Qo7N7Xuw=/0x0:1000x667/1200x800/data/photo/2022/05/28/62922b221dd75.jpg',
+            'https://asset.kompas.com/crops/mYjxtrLJrYGSUXELuF5Qo7N7Xuw=/0x0:1000x667/1200x800/data/photo/2022/05/28/62922b221dd75.jpg'
+          ],
+          isNew: false,
+          commision: 25,
+          stock: 40,
+          sizes: ['Paket 1', 'Paket 2'],
+          colors: ['FF0000', '0000FF', '008000'],
+        ),
+        const ProductModel(
+          id: '5',
+          name: 'Product 5',
+          seller: 'Seller 5',
+          description: 'Description 5',
+          customerPrice: 500000,
+          resellerPrice: 450000,
+          image: [
+            'https://asset.kompas.com/crops/mYjxtrLJrYGSUXELuF5Qo7N7Xuw=/0x0:1000x667/1200x800/data/photo/2022/05/28/62922b221dd75.jpg',
+            'https://asset.kompas.com/crops/mYjxtrLJrYGSUXELuF5Qo7N7Xuw=/0x0:1000x667/1200x800/data/photo/2022/05/28/62922b221dd75.jpg',
+            'https://asset.kompas.com/crops/mYjxtrLJrYGSUXELuF5Qo7N7Xuw=/0x0:1000x667/1200x800/data/photo/2022/05/28/62922b221dd75.jpg',
+            'https://asset.kompas.com/crops/mYjxtrLJrYGSUXELuF5Qo7N7Xuw=/0x0:1000x667/1200x800/data/photo/2022/05/28/62922b221dd75.jpg'
+          ],
+          isNew: true,
+          commision: 30,
+          stock: 50,
+          sizes: ['Paket 1', 'Paket 2'],
+          colors: ['FF0000', '0000FF', '008000'],
+        ),
+        const ProductModel(
+          id: '6',
+          name: 'Product 6',
+          seller: 'Seller 6',
+          description: 'Description 6',
+          customerPrice: 600000,
+          resellerPrice: 540000,
+          image: [
+            'https://asset.kompas.com/crops/mYjxtrLJrYGSUXELuF5Qo7N7Xuw=/0x0:1000x667/1200x800/data/photo/2022/05/28/62922b221dd75.jpg',
+            'https://asset.kompas.com/crops/mYjxtrLJrYGSUXELuF5Qo7N7Xuw=/0x0:1000x667/1200x800/data/photo/2022/05/28/62922b221dd75.jpg',
+            'https://asset.kompas.com/crops/mYjxtrLJrYGSUXELuF5Qo7N7Xuw=/0x0:1000x667/1200x800/data/photo/2022/05/28/62922b221dd75.jpg',
+            'https://asset.kompas.com/crops/mYjxtrLJrYGSUXELuF5Qo7N7Xuw=/0x0:1000x667/1200x800/data/photo/2022/05/28/62922b221dd75.jpg'
+          ],
+          isNew: false,
+          commision: 35,
+          stock: 60,
+          sizes: ['Paket 1', 'Paket 2'],
+          colors: ['FF0000', '0000FF', '008000'],
         ),
       ];
     });
@@ -85,9 +142,10 @@ class ProductApiServiceImpl implements ProductApiService {
           'https://asset.kompas.com/crops/mYjxtrLJrYGSUXELuF5Qo7N7Xuw=/0x0:1000x667/1200x800/data/photo/2022/05/28/62922b221dd75.jpg'
         ],
         isNew: true,
+        commision: 20,
         stock: 10,
         sizes: ['Paket 1', 'Paket 2'],
-        colors: ['Red', 'Blue', 'Green'],
+        colors: ['FF0000', '0000FF', '008000'],
       ),
       const ProductModel(
         id: '2',
@@ -103,9 +161,10 @@ class ProductApiServiceImpl implements ProductApiService {
           'https://asset.kompas.com/crops/mYjxtrLJrYGSUXELuF5Qo7N7Xuw=/0x0:1000x667/1200x800/data/photo/2022/05/28/62922b221dd75.jpg'
         ],
         isNew: false,
+        commision: 20,
         stock: 20,
         sizes: ['Paket 1', 'Paket 2'],
-        colors: ['Red', 'Blue', 'Green'],
+        colors: ['FF0000', '0000FF', '008000'],
       ),
       const ProductModel(
         id: '3',
@@ -121,14 +180,15 @@ class ProductApiServiceImpl implements ProductApiService {
           'https://asset.kompas.com/crops/mYjxtrLJrYGSUXELuF5Qo7N7Xuw=/0x0:1000x667/1200x800/data/photo/2022/05/28/62922b221dd75.jpg'
         ],
         isNew: true,
+        commision: 20,
         stock: 30,
         sizes: ['Paket 1', 'Paket 2'],
-        colors: ['Red', 'Blue', 'Green'],
+        colors: ['FF0000', '0000FF', '008000'],
       ),
     ];
 
     //give a timer to simulate the network delay
-    return Future.delayed(const Duration(seconds: 0), () {
+    return Future.delayed(const Duration(seconds: 4), () {
       return products.firstWhere((element) => element.id == id);
     });
   }

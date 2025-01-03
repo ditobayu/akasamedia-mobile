@@ -45,44 +45,11 @@ class ProductOptionsSection extends StatelessWidget {
               Row(
                 children: [
                   ...product.sizes!.asMap().entries.map(
-                        (size) => GestureDetector(
-                          onTap: () {
-                            onSizeChange(size.key);
-                          },
-                          child: Row(
-                            children: [
-                              size.key == currentSizeIndex
-                                  ? Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 24, vertical: 6),
-                                      decoration: BoxDecoration(
-                                          color: AppColors.primary100,
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          border: Border.all(
-                                              color: AppColors.primary950,
-                                              width: 2)),
-                                      child: Text(
-                                        size.value,
-                                        style: AppTextStyles.smallNoneMedium,
-                                      ))
-                                  : Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 24, vertical: 6),
-                                      decoration: BoxDecoration(
-                                        color: AppColors.primary100,
-                                        borderRadius: BorderRadius.circular(6),
-                                      ),
-                                      child: Text(
-                                        size.value,
-                                        style: AppTextStyles.smallNoneMedium,
-                                      )),
-                              const SizedBox(
-                                width: 12,
-                              ),
-                            ],
-                          ),
-                        ),
+                        (size) => SizeItem(
+                            onSizeChange: onSizeChange,
+                            currentSizeIndex: currentSizeIndex,
+                            index: size.key,
+                            value: size.value),
                       )
                 ],
               ),
@@ -100,37 +67,11 @@ class ProductOptionsSection extends StatelessWidget {
               Row(
                 children: [
                   ...product.colors!.asMap().entries.map(
-                        (color) => GestureDetector(
-                          onTap: () {
-                            onColorChange(color.key);
-                          },
-                          child: Row(
-                            children: [
-                              color.key == currentColorIndex
-                                  ? Container(
-                                      height: 44,
-                                      width: 44,
-                                      decoration: BoxDecoration(
-                                          color: AppColors.primary100,
-                                          borderRadius:
-                                              BorderRadius.circular(22),
-                                          border: Border.all(
-                                              color: AppColors.primary950,
-                                              width: 2)),
-                                    )
-                                  : Container(
-                                      height: 44,
-                                      width: 44,
-                                      decoration: BoxDecoration(
-                                        color: AppColors.primary100,
-                                        borderRadius: BorderRadius.circular(22),
-                                      ),
-                                    ),
-                              const SizedBox(
-                                width: 12,
-                              ),
-                            ],
-                          ),
+                        (color) => ColorItem(
+                          onColorChange: onColorChange,
+                          currentColorIndex: currentColorIndex,
+                          index: color.key,
+                          value: color.value,
                         ),
                       )
                 ],
@@ -138,14 +79,135 @@ class ProductOptionsSection extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 14),
-          RichText(
-            text: TextSpan(
-              text: 'Stok : ',
-              style: AppTextStyles.smallNoneRegular, // Gaya untuk teks pertama
-              children: <TextSpan>[
-                TextSpan(text: '99+ pcs', style: AppTextStyles.smallNoneBold),
-              ],
-            ),
+          ProductStock(
+            stock: product.stock!,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ProductStock extends StatelessWidget {
+  const ProductStock({
+    super.key,
+    required this.stock,
+  });
+  final int stock;
+
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+      text: TextSpan(
+        text: 'Stok : ',
+        style: AppTextStyles.smallNoneRegular, // Gaya untuk teks pertama
+        children: <TextSpan>[
+          TextSpan(text: '$stock pcs', style: AppTextStyles.smallNoneBold),
+        ],
+      ),
+    );
+  }
+}
+
+class ColorItem extends StatelessWidget {
+  const ColorItem({
+    super.key,
+    required this.onColorChange,
+    required this.currentColorIndex,
+    required this.index,
+    required this.value,
+  });
+
+  final Function(int p1) onColorChange;
+  final int currentColorIndex;
+  final int index;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        onColorChange(index);
+      },
+      child: Row(
+        children: [
+          index == currentColorIndex
+              ? Container(
+                  height: 44,
+                  width: 44,
+                  decoration: BoxDecoration(
+                      color: (Color(int.parse("0xFF${value}"))),
+                      borderRadius: BorderRadius.circular(22),
+                      border:
+                          Border.all(color: AppColors.primary950, width: 2)),
+                )
+              : Container(
+                  height: 44,
+                  width: 44,
+                  decoration: BoxDecoration(
+                    color: (Color(int.parse("0xFF${value}"))),
+                    borderRadius: BorderRadius.circular(22),
+                  ),
+                ),
+          const SizedBox(
+            width: 12,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SizeItem extends StatelessWidget {
+  const SizeItem({
+    super.key,
+    required this.onSizeChange,
+    required this.currentSizeIndex,
+    required this.index,
+    required this.value,
+  });
+
+  final Function(int p1) onSizeChange;
+  final int currentSizeIndex;
+  final int index;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        onSizeChange(index);
+      },
+      child: Row(
+        children: [
+          index == currentSizeIndex
+              ? Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 6),
+                  decoration: BoxDecoration(
+                      color: AppColors.primary100,
+                      borderRadius: BorderRadius.circular(6),
+                      border:
+                          Border.all(color: AppColors.primary950, width: 2)),
+                  child: Text(
+                    value,
+                    style: AppTextStyles.smallNoneMedium,
+                  ))
+              : Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: AppColors.primary100,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Text(
+                    value,
+                    style: AppTextStyles.smallNoneMedium.copyWith(
+                      color: AppColors.gray700,
+                    ),
+                  )),
+          const SizedBox(
+            width: 12,
           ),
         ],
       ),
