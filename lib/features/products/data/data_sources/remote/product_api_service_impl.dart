@@ -5,7 +5,7 @@ class ProductApiServiceImpl implements ProductApiService {
   @override
   Future<List<ProductModel>> getProducts() {
     //give a timer to simulate the network delay
-    return Future.delayed(const Duration(seconds: 4), () {
+    return Future.delayed(const Duration(seconds: 2), () {
       return [
         const ProductModel(
           id: '1',
@@ -188,7 +188,7 @@ class ProductApiServiceImpl implements ProductApiService {
     ];
 
     //give a timer to simulate the network delay
-    return Future.delayed(const Duration(seconds: 4), () {
+    return Future.delayed(const Duration(seconds: 2), () {
       return products.firstWhere((element) => element.id == id);
     });
   }
