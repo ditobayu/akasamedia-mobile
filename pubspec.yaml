@@ -1,0 +1,32 @@
+name: toko_rame
+description: "A new Flutter project."
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  carousel_slider: ^5.0.0
+  dio: ^5.7.0
+  equatable: ^2.0.7
+  floor: ^1.5.0
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.6
+  flutter_svg: ^2.0.16
+  get_it: ^8.0.3
+  go_router: ^14.6.2
+  google_fonts: ^6.2.1
+  intl: ^0.20.1
+
+dev_dependencies:
+  flutter_lints: ^3.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/
